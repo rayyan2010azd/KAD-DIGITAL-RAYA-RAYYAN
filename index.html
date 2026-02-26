@@ -1,316 +1,286 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kad Raya Digital 2026</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kad Raya Digital 2026 | Rayyan Azdfar</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-body,html{
-margin:0;
-padding:0;
-font-family:'Poppins',sans-serif;
-background:#013220;
-scroll-behavior:smooth;
-overflow-x:hidden;
-}
+    <style>
+        :root {
+            --gold: #ffd700;
+            --dark-green: #013220;
+            --emerald: #024b30;
+        }
 
-section{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-text-align:center;
-padding:20px;
-}
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-green);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            color: white;
+        }
 
-#home{
-color:#ffd700;
-background:
-linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
-url('https://images.unsplash.com/photo-1584386161274-91d1fcb007b6?q=80&w=1200')
-center/cover no-repeat;
-}
+        /* Tekstur Halus Latar Belakang */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-h1{
-font-family:'Great Vibes',cursive;
-font-size:4rem;
-margin:0;
-}
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
 
-.btn{
-margin-top:30px;
-padding:15px 40px;
-background:#ffd700;
-color:#013220;
-border-radius:50px;
-text-decoration:none;
-font-weight:bold;
-transition:.3s;
-}
+        /* --- Home --- */
+        #home {
+            background: 
+                linear-gradient(rgba(1, 50, 32, 0.5), rgba(1, 50, 32, 0.8)),
+                url('https://images.unsplash.com/photo-1584386161274-91d1fcb007b6?q=80&w=1200') center/cover no-repeat;
+        }
 
-.btn:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px gold;
-}
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 12vw, 6rem);
+            margin: 0;
+            filter: drop-shadow(0 0 15px var(--gold));
+            animation: glow 3s infinite alternate;
+        }
 
-.music-control{
-position:fixed;
-top:20px;
-right:20px;
-width:50px;
-height:50px;
-border:none;
-border-radius:50%;
-background:#ffd700;
-font-size:20px;
-cursor:pointer;
-z-index:1000;
-}
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--gold); }
+            to { text-shadow: 0 0 30px var(--gold), 0 0 40px #fff; }
+        }
 
-#message{
-background:radial-gradient(circle,#024b30,#013220);
-color:white;
-}
+        /* --- Pelita Animasi --- */
+        .pelita-container {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            gap: 40px;
+        }
 
-.card-box{
-background:rgba(255,255,255,.1);
-backdrop-filter:blur(6px);
-border-radius:20px;
-padding:30px;
-max-width:600px;
-opacity:0;
-transform:translateY(60px);
-transition:1.2s;
-}
+        .pelita {
+            font-size: 40px;
+            filter: drop-shadow(0 0 10px orange);
+            animation: flicker 1.5s infinite alternate;
+        }
 
-.show-card{
-opacity:1;
-transform:translateY(0);
-}
+        @keyframes flicker {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 20px yellow); }
+        }
 
-.firework{
-position:absolute;
-width:5px;
-height:5px;
-border-radius:50%;
-animation:boom 2s infinite;
-}
+        /* --- Pantun Box --- */
+        .pantun-box {
+            margin-top: 25px;
+            padding: 15px;
+            border: 1px dashed var(--gold);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: rgba(255, 215, 0, 0.05);
+        }
 
-@keyframes boom{
-0%{transform:translateY(70vh);opacity:1;}
-100%{transform:translateY(20vh) scale(25);opacity:0;}
-}
+        .pantun-box:hover {
+            background: rgba(255, 215, 0, 0.15);
+        }
 
-.falling{
-position:fixed;
-top:-10%;
-animation:fall linear forwards;
-}
+        #pantun-isi {
+            font-style: italic;
+            display: none;
+            animation: fadeIn 1s;
+        }
 
-@keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-opacity:0;
-}
-}
+        /* --- Card Styles --- */
+        .card-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 500px;
+            width: 85%;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
 
-#animation-section{
-height:100vh;
-background:linear-gradient(180deg,#012a1a,#001a10);
-color:white;
-position:relative;
-overflow:hidden;
-}
+        .show-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.moon{
-position:absolute;
-top:60px;
-right:80px;
-font-size:60px;
-animation:float 6s ease-in-out infinite;
-filter:drop-shadow(0 0 20px gold);
-}
+        /* --- Floating Elements --- */
+        .falling {
+            position: fixed;
+            top: -10%;
+            z-index: 999;
+            animation: fall linear forwards;
+            pointer-events: none;
+        }
 
-@keyframes float{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
-}
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
 
-.stars::before{
-content:"✨ ✨ ✨ ✨ ✨ ✨ ✨";
-position:absolute;
-width:100%;
-top:20%;
-text-align:center;
-animation:twinkle 3s infinite alternate;
-opacity:.6;
-}
+        .music-control {
+            position: fixed;
+            top: 25px; right: 25px;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: var(--gold);
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
 
-@keyframes twinkle{
-from{opacity:.2;}
-to{opacity:1;}
-}
+        .btn {
+            padding: 15px 35px;
+            background: var(--gold);
+            color: var(--dark-green);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
 
-.animate-title{
-font-size:2.5rem;
-color:#ffd700;
-animation:fadeDown 1.5s ease forwards, glowPulse 3s infinite alternate;
-}
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--gold);
+        }
 
-@keyframes fadeDown{
-from{opacity:0;transform:translateY(-40px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-@keyframes glowPulse{
-from{text-shadow:0 0 10px gold;}
-to{text-shadow:0 0 30px gold;}
-}
-
-.animated-text p{
-opacity:0;
-transform:translateY(40px);
-animation:appear 1s forwards;
-font-size:1.2rem;
-}
-
-.animated-text p:nth-child(1){animation-delay:1s;}
-.animated-text p:nth-child(2){animation-delay:2s;}
-.animated-text p:nth-child(3){animation-delay:3s;}
-.animated-text p:nth-child(4){animation-delay:4s;}
-
-@keyframes appear{
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-.sparkle{
-position:fixed;
-pointer-events:none;
-animation:sparkFade 1s forwards;
-font-size:14px;
-}
-
-@keyframes sparkFade{
-to{
-transform:translateY(-20px);
-opacity:0;
-}
-}
-</style>
+    </style>
 </head>
-
 <body>
 
-<button class="music-control" onclick="toggleMusic()">🎵</button>
-
+    <button class="music-control" onclick="toggleMusic()">🎵</button>
 
 <audio id="rayaSong" autoplay loop playsinline preload="auto">
 <source src="https://dn710609.ca.archive.org/0/items/lagu-raya-aidilfitri/sanisah-dipagiaidilfitri.mp3">
 </audio>
 
-<section id="home">
-<div style="font-size:60px;">🕌</div>
-<h1>Selamat Hari Raya</h1>
-<p>AIDILFITRI 1447H</p>
-<a href="#message" class="btn" onclick="startExperience()">Buka Ucapan</a>
-</section>
+    <section id="home">
+        <div style="font-size: 80px;">🕌</div>
+        <h1>Selamat Hari Raya</h1>
+        <p style="letter-spacing: 5px; font-weight: 300;">AIDILFITRI 1447H</p>
+        <a href="#message" class="btn" onclick="startExperience()">Klik Untuk Ucapan</a>
+        
+        <div class="pelita-container">
+            <div class="pelita">🪔</div>
+            <div class="pelita">🪔</div>
+            <div class="pelita">🪔</div>
+        </div>
+    </section>
 
-<section id="message">
+    <section id="message">
+        <div class="card-box" id="card">
+            <h2 style="font-family: 'Playfair Display'; color: var(--gold);">Maaf Zahir & Batin</h2>
+            <p>Tangan dihulur maaf dipinta,<br>Erat hubungan sesama kita.</p>
+            
+            <div class="pantun-box" onclick="revealPantun()">
+                <span id="pantun-hint">📩 Klik untuk baca pantun...</span>
+                <p id="pantun-isi">
+                    Awan bersua di hari raya,<br>
+                    Kini menjelma Syawal mulia,<br>
+                    Salah dan silap lupakan saja,<br>
+                    Moga bahagia kita semua.
+                </p>
+            </div>
 
-<div class="firework" style="left:20%;background:gold;"></div>
-<div class="firework" style="left:50%;background:silver;"></div>
-<div class="firework" style="left:80%;background:lightgreen;"></div>
+            <div style="margin: 20px 0; color: var(--gold);">⬥ ⬥ ⬥ ⬥ ⬥</div>
+            <p style="font-size: 0.9rem;">Ikhlas daripada:</p>
+            <h3 style="margin-top: 5px; color: var(--gold);">MUHAMMAD RAYYAN AZDFAR BIN NOR AZDHAR</h3>
+        </div>
+    </section>
 
-<div class="card-box" id="card">
-<h2>Maaf Zahir & Batin</h2>
+    <section id="animation-section" style="background: #001a10;">
+        <div style="position: absolute; top: 10%; right: 10%; font-size: 60px; filter: drop-shadow(0 0 20px gold);">🌙</div>
+        <h2 style="color: var(--gold); font-family: 'Playfair Display'; font-size: 2.5rem;">Keceriaan Syawal</h2>
+        
+        <div id="extra-messages">
+            <p style="margin: 15px; opacity: 0.8;">✨ Nikmati lemang dan rendang</p>
+            <p style="margin: 15px; opacity: 0.8;">✨ Ziarah-menziarahi penuh kasih</p>
+            <p style="margin: 15px; opacity: 0.8;">✨ Senyuman manis di pagi raya</p>
+        </div>
 
-<p>
-Sepuluh jari menyusun maaf,<br>
-Salah dan silap harap diampunkan.<br>
-Moga Syawal ini membawa seribu keberkatan.
-</p>
+        <a href="#home" class="btn" style="background: transparent; color: var(--gold); border: 1px solid var(--gold);">Kembali Ke Atas</a>
+    </section>
 
-<div style="color:#ffd700;">⬥ ⬥ ⬥ ⬥ ⬥</div>
+    <script>
+        const song = document.getElementById("rayaSong");
 
-<p>Ikhlas daripada:<br>
-<strong>MUHAMMAD RAYYAN AZDFAR BIN NOR AZDHAR</strong></p>
-</div>
-</section>
+        function startExperience() {
+            song.play();
+            document.getElementById("card").classList.add("show-card");
+        }
 
-<section id="animation-section">
+        function toggleMusic() {
+            song.paused ? song.play() : song.pause();
+        }
 
-<div class="moon">🌙</div>
-<div class="stars"></div>
+        function revealPantun() {
+            document.getElementById("pantun-hint").style.display = "none";
+            document.getElementById("pantun-isi").style.display = "block";
+        }
 
-<h2 class="animate-title">Ucapan Istimewa Syawal</h2>
+        // Efek Bintang/Ketupat Jatuh
+        function createFalling() {
+            const icons = ['✨', '⭐', '🌙', '🎋', '💎'];
+            const el = document.createElement("div");
+            el.className = "falling";
+            el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            el.style.left = Math.random() * 100 + "vw";
+            el.style.fontSize = (Math.random() * 20 + 15) + "px";
+            el.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 7000);
+        }
+        setInterval(createFalling, 500);
 
-<div class="animated-text">
-<p>✨ Semoga Aidilfitri membawa sinar kebahagiaan</p>
-<p>🌙 Mengeratkan silaturahim sesama insan</p>
-<p>💛 Menghapus segala salah dan silap</p>
-<p>🕌 Dan dipenuhi keberkatan Ilahi</p>
-</div>
+        // Efek Sparkle Tetikus
+        document.addEventListener("mousemove", (e) => {
+            const spark = document.createElement("div");
+            spark.className = "falling"; 
+            spark.style.position = "fixed";
+            spark.innerHTML = "✨";
+            spark.style.left = e.clientX + "px";
+            spark.style.top = e.clientY + "px";
+            spark.style.animation = "sparkFade 0.8s forwards";
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 800);
+        });
 
-<a href="#home" class="btn">Kembali Ke Atas</a>
+        window.addEventListener("scroll", () => {
+            if(document.getElementById("card").getBoundingClientRect().top < window.innerHeight) {
+                document.getElementById("card").classList.add("show-card");
+            }
+        });
+    </script>
 
-</section>
-
-<script>
-const song=document.getElementById("rayaSong");
-
-function startExperience(){
-song.muted=false; // buka bunyi
-song.play();
-document.getElementById("card").classList.add("show-card");
-}
-
-function toggleMusic(){
-song.paused?song.play():song.pause();
-}
-
-function createFalling(){
-const icons=['⭐','🌙','✨','🎋'];
-const el=document.createElement("div");
-
-el.className="falling";
-el.innerHTML=icons[Math.floor(Math.random()*icons.length)];
-el.style.left=Math.random()*100+"vw";
-el.style.fontSize=(Math.random()*20+12)+"px";
-el.style.animationDuration=(Math.random()*4+6)+"s";
-
-document.body.appendChild(el);
-setTimeout(()=>el.remove(),9000);
-}
-
-setInterval(createFalling,800);
-
-window.addEventListener("scroll",()=>{
-const card=document.getElementById("card");
-if(card.getBoundingClientRect().top<window.innerHeight){
-card.classList.add("show-card");
-}
-});
-
-document.addEventListener("mousemove",(e)=>{
-const spark=document.createElement("div");
-spark.className="sparkle";
-spark.innerHTML="✨";
-
-spark.style.left=e.clientX+"px";
-spark.style.top=e.clientY+"px";
-
-document.body.appendChild(spark);
-
-setTimeout(()=>spark.remove(),900);
-});
-</script>
+    <style>
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes sparkFade { to { transform: scale(0.5); opacity: 0; } }
+    </style>
 
 </body>
 </html>
