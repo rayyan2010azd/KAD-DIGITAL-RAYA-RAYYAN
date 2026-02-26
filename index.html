@@ -210,7 +210,8 @@ opacity:0;
 
 <button class="music-control" onclick="toggleMusic()">🎵</button>
 
-<audio id="rayaSong" loop>
+
+<audio id="rayaSong" autoplay loop playsinline preload="auto">
 <source src="https://dn710609.ca.archive.org/0/items/lagu-raya-aidilfitri/sanisah-dipagiaidilfitri.mp3">
 </audio>
 
@@ -265,6 +266,7 @@ Moga Syawal ini membawa seribu keberkatan.
 const song=document.getElementById("rayaSong");
 
 function startExperience(){
+song.muted=false; // buka bunyi
 song.play();
 document.getElementById("card").classList.add("show-card");
 }
